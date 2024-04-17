@@ -1,21 +1,16 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 #include <iostream>
 using namespace std;
 
 int main(){
-  int N,K;
-  cin >> N >> K;
-  vector<int> A(N);
-  vector<int> R;
-  R.reserve(N);
-  for (int i = 1; i <= N; i++) {
-    cin >> A[i];
-    if (A[i] % K == 0) {
-      R.push_back(A[i] / K);
+    int n, k;
+    cin >> n >> k ;
+    vector<int> a(n);
+    for(int i = 0; i < n; i++) cin >> a[i];
+    vector<int> b;
+    for(int i = 0; i < n; i++){
+        if(a[i] % k == 0) b.push_back(a[i] / k);
     }
-  }
-  sort(R.begin(), R.end());
-  for (int i = 0; i < R.size(); i++) cout << " ";
-
-
+    for(int i = 0; i < b.size(); i++) cout<<b[i] << " ";
+    cout << endl;
 }
