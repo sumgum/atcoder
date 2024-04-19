@@ -5,13 +5,16 @@ using namespace std;
 int main(){
   string s;
   cin >> s;
-  int n = s.size();
-  bool addable = true;
-  for (int i = 0; i < n; i++) {
-    if (s[i] == '|') addable = (!addable);
-    if (s[i] != '|' && addable) {
-      cout<<s[i];
+  string t;
+  int count = 0;
+  for (char c: s) {
+    if (c == '|') {
+      count++;
+    } else {
+      if (count != 1) {
+        t += c;
+      }
     }
   }
-  cout<<endl;
+  cout<<t<<endl;
 }
