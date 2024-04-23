@@ -6,36 +6,34 @@ using namespace std;
 using ll = long long;
 using P = pair<int,int>;
 
-int partSum(int a, int b) {
-  int result;
+ll partSum(ll a, ll b) {
+  ll result;
   result = (b + a) * (b - a + 1) / 2;
-  // cout << a << endl;
-  // cout << b << endl;
-  // cout << result << endl;
   return result;
 }
 
 int main(){
   int n, k;
   cin >> n >> k;
-  vector<int> a(n);
+  vector<ll> a(n);
   for (int i = 0; i < n; i++) {
     cin >> a[i];
   }
   sort(a.begin(), a.end());
 
-  int result = 0;
-  int temp = a[0];
+
+  ll result = 0;
+  result = partSum(1, k);
+  ll temp = -1;
   for (int i = 0; i < n; i++) {
-    if (a[i] == temp || a[i] == temp+1) {
+    if (a[i] == temp) {
+      continue;
+    } else if (a[i] != temp && a[i] <= k) {
+      result -= a[i];
       temp = a[i];
     } else {
-      result += partSum(temp+1, a[i]-1);
-      temp = a[i];
+      break;
     }
-  }
-  if (a[n-1] < k) {
-    result += partSum(temp+1, k);
   }
   cout << result << endl;
 }
