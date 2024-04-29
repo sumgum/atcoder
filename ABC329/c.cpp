@@ -28,27 +28,37 @@ int main(){
   cin >> n >> s;
 
   int count = 0;
+  bool continueFlag = false;
   for (int i = 1; i <= n; i++) {
-    vector<string> a;
+    if (continueFlag) {
+      continue;
+    }
+
+    int tempCount = 0;
+    vector<char> a;
     a.reserve(n);
 
     for (int j = 0; j < n-i+1; j++) {
+      char c = s[j];
       string temp = s.substr(j,i);
 
-      if (isStreak(temp)) {
-        auto it = find(a.begin(), a.end(), temp);
-        if (it != a.end()) {
-          continue;
-        } else {
-          // cout << "aaaaaa:" << temp << endl;
-          a.push_back(temp);
-          count++;
-        }
-      } else {
+      auto it = find(a.begin(), a.end(), c);
+      if (it != a.end()) {
         continue;
+      } else {
+        if (isStreak(temp)) {
+          a.push_back(c);
+          count++;
+          tempCount++;
+        } else {
+          continue;
+        }
       }
     }
 
+    if (tempCount == 0) {
+      continueFlag = true;
+    }
   }
 
   cout << count << endl;
